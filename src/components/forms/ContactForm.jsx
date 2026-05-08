@@ -10,12 +10,34 @@ export default function ContactForm() {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    console.log('Contact:', data);
-    setLoading(false);
-    setSubmitted(true);
-    reset();
-    setTimeout(() => setSubmitted(false), 5000);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE",
+          form_name: "Contact Form",
+          ...data,
+        }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+        reset();
+      } else {
+        console.error("Form submission error", result);
+        alert("Something went wrong! Please try again later.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong! Please try again later.");
+    } finally {
+      setLoading(false);
+      setTimeout(() => setSubmitted(false), 5000);
+    }
   };
 
   return (
