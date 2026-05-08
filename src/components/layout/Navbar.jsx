@@ -39,7 +39,7 @@ export default function Navbar() {
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="container-pad flex items-center justify-between">
+      <div className="w-full px-[20px] flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
           <div className="w-10 h-10 bg-ocean-gradient rounded-xl flex items-center justify-center shadow-ocean group-hover:scale-110 transition-transform">
@@ -51,48 +51,51 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              className={({ isActive }) =>
-                `relative px-4 py-2 text-sm font-medium tracking-wide transition-colors duration-200 group ${
-                  isActive ? 'text-gold-400' : 'text-white/80 hover:text-white'
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  {link.name}
-                  <span
-                    className={`absolute bottom-0 left-4 right-4 h-0.5 bg-gold-gradient rounded-full transition-all duration-300 ${
-                      isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                    }`}
-                  />
-                </>
-              )}
-            </NavLink>
-          ))}
-        </nav>
+        {/* Right Section: Nav & CTA */}
+        <div className="hidden lg:flex items-center gap-8">
+          {/* Desktop Nav */}
+          <nav className="flex items-center gap-2">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                className={({ isActive }) =>
+                  `relative px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-200 group ${
+                    isActive ? 'text-gold-400' : 'text-white/80 hover:text-white'
+                  }`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    {link.name}
+                    <span
+                      className={`absolute bottom-0 left-3 right-3 h-0.5 bg-gold-gradient rounded-full transition-all duration-300 ${
+                        isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                      }`}
+                    />
+                  </>
+                )}
+              </NavLink>
+            ))}
+          </nav>
 
-        {/* CTA */}
-        <div className="hidden lg:flex items-center gap-3">
-          <a
-            href="tel:+919821077366"
-            className="flex items-center gap-2 text-sm text-white/70 hover:text-gold-400 transition-colors"
-          >
-            <Phone className="w-4 h-4" />
-            <span>+91 9821077366</span>
-          </a>
-          <Link
-            to="/book-appointment"
-            className="px-6 py-2.5 bg-gold-gradient text-charcoal text-sm font-bold rounded-full
-                       hover:shadow-gold hover:-translate-y-0.5 transition-all duration-300 tracking-wide"
-          >
-            Book Now
-          </Link>
+          {/* CTA */}
+          <div className="flex items-center gap-5 border-l border-white/20 pl-5">
+            <a
+              href="tel:+919821077366"
+              className="flex items-center gap-2 text-sm font-medium text-white hover:text-gold-400 transition-colors"
+            >
+              <Phone className="w-4 h-4" />
+              <span>+91 9821077366</span>
+            </a>
+            <Link
+              to="/book-appointment"
+              className="px-6 py-2.5 bg-gold-gradient text-charcoal text-sm font-bold rounded-full
+                         hover:shadow-gold hover:-translate-y-0.5 transition-all duration-300 tracking-wide"
+            >
+              Book Now
+            </Link>
+          </div>
         </div>
 
         {/* Mobile Menu Toggle */}

@@ -11,43 +11,43 @@ export default function HeroSection() {
         <img
           src={heroSpa}
           alt="Ocean Spa luxury treatment"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-right md:object-center"
         />
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent" />
+        {/* Gradient overlays for cinematic left-focused look */}
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent" />
       </div>
 
       {/* Floating particles */}
-      {[...Array(6)].map((_, i) => (
+      {[...Array(8)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute w-1 h-1 bg-gold-400/40 rounded-full"
           style={{
-            left: `${15 + i * 15}%`,
-            top: `${20 + (i % 3) * 25}%`,
+            left: `${10 + i * 12}%`,
+            top: `${15 + (i % 4) * 20}%`,
           }}
-          animate={{ y: [-10, 10, -10], opacity: [0.3, 0.7, 0.3] }}
-          transition={{ duration: 3 + i * 0.5, repeat: Infinity, delay: i * 0.4 }}
+          animate={{ y: [-15, 15, -15], opacity: [0.2, 0.8, 0.2] }}
+          transition={{ duration: 4 + i * 0.5, repeat: Infinity, delay: i * 0.3 }}
         />
       ))}
 
       {/* Content */}
-      <div className="container-pad relative z-10 pt-24">
-        <div className="max-w-2xl">
+      <div className="container-pad relative z-10 w-full min-h-screen flex items-center pt-24 pb-16">
+        <div className="max-w-2xl lg:max-w-3xl flex flex-col items-start w-full">
           {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="flex items-center gap-2 mb-5"
+            className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-gold-400/30 bg-gold-400/10 backdrop-blur-sm mb-6"
           >
             <div className="flex items-center gap-1">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3 h-3 text-gold-400 fill-gold-400" />
+                <Star key={i} className="w-3.5 h-3.5 text-gold-400 fill-gold-400" />
               ))}
             </div>
-            <span className="text-xs text-gold-400/80 tracking-[0.25em] uppercase font-sans font-semibold">
+            <span className="text-[11px] md:text-xs text-gold-400 tracking-[0.2em] uppercase font-sans font-bold">
               Delhi's Premium Wellness Sanctuary
             </span>
           </motion.div>
@@ -57,29 +57,20 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.3 }}
-            className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-6"
+            className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] font-bold text-white leading-[1.1] mb-6 tracking-tight"
           >
-            Relax Your Body,
-            <br />
+            Relax Your Body,<br />
             <span className="gold-text">Calm Your Mind</span>
           </motion.h1>
-
-          {/* Divider */}
-          <motion.div
-            initial={{ scaleX: 0, originX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            className="w-20 h-0.5 bg-gold-gradient mb-6"
-          />
 
           {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-lg text-white/75 mb-10 max-w-lg leading-relaxed"
+            className="text-base md:text-lg text-white/80 mb-10 max-w-xl leading-relaxed font-light"
           >
-            Step into Ocean Spa Delhi — where ancient healing traditions meet modern luxury. 
+            Step into Ocean Spa Delhi — where ancient healing traditions meet modern luxury.
             Experience transformative treatments curated for your complete wellbeing.
           </motion.p>
 
@@ -88,20 +79,20 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-wrap gap-4"
+            className="flex flex-col sm:flex-row flex-wrap items-center gap-4 w-full sm:w-auto"
           >
             <Link
               to="/book-appointment"
-              className="flex items-center gap-2 px-8 py-4 bg-gold-gradient text-charcoal font-bold rounded-full
-                         hover:shadow-gold hover:-translate-y-1 hover:scale-105 transition-all duration-300 tracking-wide"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-gold-gradient text-charcoal font-bold rounded-full
+                         hover:shadow-gold hover:-translate-y-1 transition-all duration-300 tracking-wide text-sm md:text-base"
             >
               <CalendarCheck className="w-5 h-5" />
               Book Your Experience
             </Link>
             <Link
               to="/services"
-              className="flex items-center gap-2 px-8 py-4 border-2 border-white/60 text-white font-semibold rounded-full
-                         hover:bg-white hover:text-ocean-700 hover:-translate-y-1 transition-all duration-300 tracking-wide backdrop-blur-sm"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 border border-white/30 bg-white/5 text-white font-medium rounded-full
+                         hover:bg-white hover:text-ocean-900 hover:border-white hover:-translate-y-1 transition-all duration-300 tracking-wide backdrop-blur-md text-sm md:text-base"
             >
               Explore Treatments
               <ArrowRight className="w-5 h-5" />
@@ -113,19 +104,29 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-white/15"
+            className="mt-14 w-full"
           >
-            {[
-              { value: '5,000+', label: 'Happy Clients' },
-              { value: '15+', label: 'Expert Therapists' },
-              { value: '8', label: 'Luxury Treatments' },
-              { value: '4.9★', label: 'Average Rating' },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <p className="font-serif text-2xl font-bold text-gold-400">{stat.value}</p>
-                <p className="text-xs text-white/50 mt-0.5">{stat.label}</p>
-              </div>
-            ))}
+            <div className="flex flex-col md:flex-row flex-wrap md:flex-nowrap items-center gap-y-6 md:gap-y-0 bg-charcoal/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 max-w-max shadow-2xl">
+              {[
+                { value: '5,000+', label: 'Happy Clients' },
+                { value: '15+', label: 'Expert Therapists' },
+                { value: '8', label: 'Luxury Treatments' },
+                { value: '4.9★', label: 'Average Rating' },
+              ].map((stat, i, arr) => (
+                <div key={stat.label} className="flex items-center w-full md:w-auto justify-center md:justify-start">
+                  <div className="flex flex-col items-center md:items-start px-4 sm:px-6">
+                    <p className="font-serif text-3xl font-bold text-gold-400 mb-1">{stat.value}</p>
+                    <p className="text-sm text-white/70 font-medium whitespace-nowrap uppercase tracking-wider text-[10px] sm:text-xs">{stat.label}</p>
+                  </div>
+                  {i < arr.length - 1 && (
+                    <div className="hidden md:block w-px h-12 bg-white/20 mx-2" />
+                  )}
+                  {i < arr.length - 1 && (
+                    <div className="md:hidden w-1/2 h-px bg-white/20 my-4" />
+                  )}
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
